@@ -1,4 +1,6 @@
 import {useState} from 'react'
+import Fruit from './Fruit'
+import FruitForm from './FruitForm'
 
 const RenderList = () => {
     const [fruits, setFruits] = useState([
@@ -7,17 +9,22 @@ const RenderList = () => {
         {id: 3, nom: 'mangue'},
         {id: 4, nom: 'goyave'},
     ])
-
     const handleDelete = (id) => {
         let newFruits = [...fruits]
         setFruits(newFruits.filter((fruit) => fruit.id != id))
     }
+    const handleAdd = (newFruit) => {
+        setFruits([...fruits, newFruit])
+    }
   return (
+    <>
+    <FruitForm handleAdd={handleAdd}/>
     <ul>
         {fruits.map((fruit)=> (
-            <li key={fruit.id}>{fruit.nom} <button onClick={() => handleDelete(fruit.id)}>Delete</button></li>
+            <Fruit fruit={fruit} handleDelete={handleDelete} key={fruit.id}/>    
         ))}
     </ul>
+    </>
   )
 }
 
