@@ -3,12 +3,7 @@ import Fruit from './Fruit'
 import FruitForm from './FruitForm'
 
 const RenderList = () => {
-    const [fruits, setFruits] = useState([
-        {id: 2, nom: 'patate'},
-        {id: 1, nom: 'banane'},
-        {id: 3, nom: 'mangue'},
-        {id: 4, nom: 'goyave'},
-    ])
+    const [fruits, setFruits] = useState([])
     const handleDelete = (id) => {
         let newFruits = [...fruits]
         setFruits(newFruits.filter((fruit) => fruit.id != id))
@@ -19,6 +14,7 @@ const RenderList = () => {
   return (
     <>
     <FruitForm handleAdd={handleAdd}/>
+    <p className="message"></p>
     <ul>
         {fruits.map((fruit)=> (
             <Fruit fruit={fruit} handleDelete={handleDelete} key={fruit.id}/>    

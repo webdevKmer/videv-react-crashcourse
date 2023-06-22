@@ -5,12 +5,17 @@ const FruitForm = ({handleAdd}) => {
     const [fruitInput, setFruitInput] = useState("")
 
     const handleSubmit = (e) => {
+        document.querySelector('.message').textContent = ""
         e.preventDefault()
-        const madate = new Date().getTime()
-        const fruitToAdd = {id:madate, nom:fruitInput}
-        handleAdd(fruitToAdd)
-        setFruitInput("")
-        console.log('fruit added...', madate);
+        if(fruitInput == ''){
+          document.querySelector('.message').textContent = "Enter a fruit..."
+        } else {
+          const madate = new Date().getTime()
+          const fruitToAdd = {id:madate, nom:fruitInput}
+          handleAdd(fruitToAdd)
+          setFruitInput("")
+          console.log('fruit added...', madate);
+        }
     }
     const handleChange = (e) => {
         setFruitInput(e.target.value)
